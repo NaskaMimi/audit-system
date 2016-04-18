@@ -1,21 +1,37 @@
 package ru.vr.system.resources;
 
-import ru.vr.system.dto.SimpleDto;
+import ru.vr.system.converter.RuleConverter;
+import ru.vr.system.dto.RuleDto;
+import ru.rv.system.service.LoadRuleService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.annotation.Nonnull;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/audit")
 public class AuditSystemResource
 {
-    @Path("hello")
+    private final LoadRuleService loadRuleService;
+    private final RuleConverter ruleConverter;
+
+    @Inject
+    public AuditSystemResource(@Nonnull final LoadRuleService loadRuleService,
+                               @Nonnull final RuleConverter ruleConverter)
+    {
+        this.loadRuleService = loadRuleService;
+        this.ruleConverter = ruleConverter;
+    }
+
+    @Path("loadRule")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public SimpleDto hello()
+    public List<RuleDto> loadRule()
     {
-        return new SimpleDto(BigInteger.ZERO, "sssasss");
+        return loadRuleService.loadRules().stream()
+                .map(ruleConverter::convert)
+                .collect(Collectors.toList());
     }
 }

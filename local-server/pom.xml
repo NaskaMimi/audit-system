@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>ru.vago.system</groupId>
+        <groupId>ru.rv.system</groupId>
         <artifactId>audtit-system-parent</artifactId>
         <version>next-SNAPSHOT</version>
         <relativePath>../parent/pom.xml</relativePath>
@@ -13,6 +13,7 @@
 
     <artifactId>audtit-system-local-server</artifactId>
     <version>next-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <build>
         <plugins>
@@ -22,4 +23,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <!-- Project dependency -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>audtit-system-web</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
+        <!-- JEE Specification dependency -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+        </dependency>
+
+        <!-- 3rd party dependency -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+    </dependencies>
 </project>

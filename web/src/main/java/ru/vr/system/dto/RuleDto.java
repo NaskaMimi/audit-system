@@ -2,26 +2,29 @@ package ru.vr.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import javax.annotation.Nonnull;
 import java.math.BigInteger;
 
-public class SimpleDto
+public class RuleDto
 {
-    private BigInteger id;
-    private String name;
+    private final BigInteger id;
+    private final String name;
 
     @JsonCreator
-    public SimpleDto(BigInteger id,
-                     String name)
+    RuleDto(@Nonnull final BigInteger id,
+                   @Nonnull final String name)
     {
         this.id = id;
         this.name = name;
     }
 
+    @Nonnull
     public BigInteger getId()
     {
         return id;
     }
 
+    @Nonnull
     public String getName()
     {
         return name;

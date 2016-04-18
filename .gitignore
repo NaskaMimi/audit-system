@@ -4,3 +4,5 @@
 /parent/*.iml
 /web/target
 /parent/src
+/impl/target
+/local-server/target
