@@ -1,6 +1,7 @@
-package ru.vr.system.converter;
+package ru.rv.system.converter;
 
-import ru.vr.system.dto.*;
+import ru.rv.system.dto.FactoryDto;
+import ru.rv.system.dto.RuleDto;
 import ru.rv.system.entity.RuleEntity;
 
 import javax.annotation.Nonnull;

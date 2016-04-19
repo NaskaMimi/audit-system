@@ -4,10 +4,11 @@ import com.google.common.collect.Lists;
 import ru.rv.system.entity.RuleEntity;
 import ru.rv.system.service.LoadRuleService;
 
-import javax.enterprise.inject.Alternative;
+import javax.ejb.Stateless;
 import java.math.BigInteger;
 import java.util.List;
 
+@Stateless
 public class LoadRuleServiceImpl implements LoadRuleService
 {
     @Override

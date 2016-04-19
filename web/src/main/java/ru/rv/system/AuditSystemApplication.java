@@ -1,14 +1,16 @@
-package ru.vr.system;
+package ru.rv.system;
 
 import com.google.common.collect.Sets;
 import org.glassfish.jersey.jackson.JacksonFeature;
-import ru.vr.system.resources.AuditSystemResource;
+import ru.rv.system.resources.AuditSystemResource;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.Set;
 
-@ApplicationPath("/rest")
+import static ru.rv.system.Constants.*;
+
+@ApplicationPath(JAX_RS_APPLICATION_ROOT_PATH)
 public class AuditSystemApplication extends Application
 {
     @Override

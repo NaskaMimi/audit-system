@@ -1,4 +1,4 @@
-package ru.vr.system.dto;
+package ru.rv.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -12,7 +12,7 @@ public class RuleDto
 
     @JsonCreator
     RuleDto(@Nonnull final BigInteger id,
-                   @Nonnull final String name)
+            @Nonnull final String name)
     {
         this.id = id;
         this.name = name;

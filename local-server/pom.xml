@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>ru.rv.system</groupId>
-        <artifactId>audtit-system-parent</artifactId>
+        <artifactId>audit-system-parent</artifactId>
         <version>next-SNAPSHOT</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
@@ -43,6 +43,10 @@
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.ejb</groupId>
+            <artifactId>javax.ejb-api</artifactId>
         </dependency>
 
         <!-- 3rd party dependency -->
