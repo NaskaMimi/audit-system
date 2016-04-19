@@ -11,7 +11,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>audtit-system-web</artifactId>
+    <artifactId>audit-system-web</artifactId>
     <version>next-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -26,7 +26,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.packaging}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>audit-system-impl</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>

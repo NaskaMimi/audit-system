@@ -11,7 +11,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>audtit-system-local-server</artifactId>
+    <artifactId>audit-system-local-server</artifactId>
     <version>next-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -28,9 +28,15 @@
         <!-- Project dependency -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>audtit-system-web</artifactId>
+            <artifactId>audit-system-web</artifactId>
             <version>${project.version}</version>
             <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>audit-system-impl</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
         </dependency>
 
         <!-- JEE Specification dependency -->

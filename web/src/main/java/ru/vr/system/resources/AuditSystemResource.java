@@ -14,16 +14,18 @@ import java.util.stream.Collectors;
 @Path("/audit")
 public class AuditSystemResource
 {
-    private final LoadRuleService loadRuleService;
-    private final RuleConverter ruleConverter;
-
     @Inject
+    LoadRuleService loadRuleService;
+    @Inject
+    RuleConverter ruleConverter;
+
+    /*@Inject
     public AuditSystemResource(@Nonnull final LoadRuleService loadRuleService,
                                @Nonnull final RuleConverter ruleConverter)
     {
         this.loadRuleService = loadRuleService;
         this.ruleConverter = ruleConverter;
-    }
+    }*/
 
     @Path("loadRule")
     @GET
