@@ -9,4 +9,5 @@ import java.util.List;
 public interface LoadRuleService
 {
     List<RuleEntity> loadRules();
+    //todo add loadRule
 }
