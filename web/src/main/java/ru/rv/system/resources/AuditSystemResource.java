@@ -1,34 +1,29 @@
 package ru.rv.system.resources;
 
 import ru.rv.system.Constants;
-import ru.rv.system.converter.RuleConverter;
 import ru.rv.system.dto.RuleDto;
-import ru.rv.system.service.LoadRuleService;
 
-import javax.inject.Inject;
-import javax.ws.rs.*;
+import javax.annotation.Nonnull;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static ru.rv.system.Constants.JAX_RS_RESOURCE_AUDIT_PATH;
 
 @Path(JAX_RS_RESOURCE_AUDIT_PATH)
-public class AuditSystemResource
+public interface AuditSystemResource
 {
-    //TODO:create Facade
-    @Inject
-    LoadRuleService loadRuleService;
-    @Inject
-    RuleConverter ruleConverter;
-
+    @Nonnull
     @Path(Constants.LOAD_RULES_PATH)
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<RuleDto> loadRule()
-    {
-        return loadRuleService.loadRules().stream()
-                .map(ruleConverter::convert)
-                .collect(Collectors.toList());
-    }
+    List<RuleDto> loadRule();
+
+    @Path(Constants.AUTHORIZATION_USER_PATH)
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    void authorization(@Nonnull String login, @Nonnull String password);
 }
