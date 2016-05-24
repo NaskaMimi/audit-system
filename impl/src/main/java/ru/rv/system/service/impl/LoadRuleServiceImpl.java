@@ -15,7 +15,7 @@ public class LoadRuleServiceImpl implements LoadRuleService
     public List<RuleEntity> loadRules()
     {
         RuleEntity ruleEntity = new RuleEntity();
-        ruleEntity.setId(BigInteger.ONE);
+        ruleEntity.setId(1);
         ruleEntity.setName("sss");
         return Lists.newArrayList(ruleEntity);
     }

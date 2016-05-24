@@ -4,6 +4,8 @@ import ru.rv.system.Constants;
 import ru.rv.system.dto.RuleDto;
 
 import javax.annotation.Nonnull;
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

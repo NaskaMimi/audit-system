@@ -7,19 +7,18 @@ import java.math.BigInteger;
 
 public class RuleDto
 {
-    private final BigInteger id;
+    private final long id;
     private final String name;
 
     @JsonCreator
-    RuleDto(@Nonnull final BigInteger id,
+    RuleDto(final long id,
             @Nonnull final String name)
     {
         this.id = id;
         this.name = name;
     }
 
-    @Nonnull
-    public BigInteger getId()
+    public long getId()
     {
         return id;
     }

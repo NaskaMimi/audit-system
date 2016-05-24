@@ -30,4 +30,10 @@ public class AuditSystemFacade
                 .map(ruleConverter::convert)
                 .collect(Collectors.toList());
     }
+
+    public void authorization(String login,
+                              String password)
+    {
+
+    }
 }

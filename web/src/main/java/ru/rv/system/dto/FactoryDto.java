@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 public class FactoryDto
 {
-    public static RuleDto createRuleDto(@Nonnull final BigInteger id,
+    public static RuleDto createRuleDto(@Nonnull final long id,
                                         @Nonnull final String name)
     {
         return new RuleDto(id, name);

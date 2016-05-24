@@ -1,23 +1,21 @@
-package ru.rv.system.entity;
+package ru.rv.system.entity.secure;
 
 import javax.annotation.Nonnull;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigInteger;
 
 @Entity
-@Table(name = "RULES")
-public class RuleEntity implements Serializable
+@Table(name = "ROLES")
+public class RoleEntity implements Serializable
 {
     @Id
-    @SequenceGenerator(name = "rule_id_seq_gen", sequenceName = "rule_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rule_id_seq_gen")
-    @Column(name = "ID_RULES")
+    @SequenceGenerator(name = "role_id_seq_gen", sequenceName = "role_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_id_seq_gen")
+    @Column(name = "ID_ROLE")
     private long id;
 
-    @Column(name = "NAME_RULES")
+    @Column(name = "NAME_ROLE", nullable = false)
     private String name;
-
 
     public long getId()
     {
@@ -35,7 +33,6 @@ public class RuleEntity implements Serializable
         return name;
     }
 
-    @Nonnull
     public void setName(@Nonnull final String name)
     {
         this.name = name;
