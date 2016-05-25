@@ -1,6 +1,7 @@
 package ru.rv.system.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnull;
 import java.math.BigInteger;
@@ -11,8 +12,8 @@ public class RuleDto
     private final String name;
 
     @JsonCreator
-    RuleDto(final long id,
-            @Nonnull final String name)
+    RuleDto(@JsonProperty("id") final long id,
+            @JsonProperty("name") @Nonnull final String name)
     {
         this.id = id;
         this.name = name;
@@ -27,5 +28,10 @@ public class RuleDto
     public String getName()
     {
         return name;
+    }
+
+    public static void main(String[] args)
+    {
+
     }
 }

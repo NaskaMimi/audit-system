@@ -6,7 +6,9 @@ import ru.rv.system.entity.RuleEntity;
 
 import javax.annotation.Nonnull;
 
-public class RuleConverter implements Converter<RuleEntity, RuleDto>
+public class RuleConverter
+        implements Converter<RuleEntity, RuleDto>
+
 {
     @Nonnull
     @Override
@@ -15,5 +17,14 @@ public class RuleConverter implements Converter<RuleEntity, RuleDto>
         return FactoryDto.createRuleDto(
                 ruleEntity.getId(),
                 ruleEntity.getName());
+    }
+
+    @Nonnull
+    @Override
+    public RuleEntity convert(@Nonnull RuleDto input)
+    {
+        RuleEntity ruleEntity = new RuleEntity();
+        ruleEntity.setName(input.getName());
+        return ruleEntity;
     }
 }

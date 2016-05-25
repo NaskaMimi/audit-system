@@ -7,6 +7,9 @@ import java.math.BigInteger;
 
 @Entity
 @Table(name = "RULES")
+@NamedQueries(
+        @NamedQuery(name = "RULES.loadAll", query = "select o from RuleEntity o")
+)
 public class RuleEntity implements Serializable
 {
     @Id
@@ -18,6 +21,7 @@ public class RuleEntity implements Serializable
     @Column(name = "NAME_RULES")
     private String name;
 
+    public RuleEntity() {}
 
     public long getId()
     {
@@ -35,7 +39,6 @@ public class RuleEntity implements Serializable
         return name;
     }
 
-    @Nonnull
     public void setName(@Nonnull final String name)
     {
         this.name = name;

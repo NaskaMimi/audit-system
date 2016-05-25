@@ -1,14 +1,10 @@
 package ru.rv.system.resources;
 
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import ru.rv.system.dto.RuleDto;
 import ru.rv.system.facade.AuditSystemFacade;
 
 import javax.annotation.Nonnull;
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.*;
-import java.util.Collections;
 import java.util.List;
 
 public class AuditSystemResourceImpl implements AuditSystemResource
@@ -30,4 +26,9 @@ public class AuditSystemResourceImpl implements AuditSystemResource
         auditSystemFacade.authorization(login, password);
     }
 
+    @Override
+    public void addRule(@Nonnull final RuleDto ruleDto)
+    {
+        auditSystemFacade.addRule(ruleDto);
+    }
 }
