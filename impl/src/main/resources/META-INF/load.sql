@@ -1,0 +1,1 @@
+INSERT INTO RULES VALUES(nextval('rule_id_seq'), 'Rule1');

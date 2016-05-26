@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class UserEntity implements Serializable
 {
     @Id
-    @SequenceGenerator(name = "user_id_seq_gen", sequenceName = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq_gen", sequenceName = "user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq_gen")
     @Column(name = "ID_USER")
     private long id;
@@ -19,6 +19,10 @@ public class UserEntity implements Serializable
 
     @Column(name = "PASSWORD_USER", nullable = false)
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_GROUP")
+    private GroupEntity group;
 
     public long getId()
     {
@@ -50,5 +54,15 @@ public class UserEntity implements Serializable
     public void setPassword(@Nonnull final String password)
     {
         this.password = password;
+    }
+
+    public GroupEntity getGroup()
+    {
+        return group;
+    }
+
+    public void setGroup(GroupEntity group)
+    {
+        this.group = group;
     }
 }

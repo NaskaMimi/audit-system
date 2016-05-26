@@ -13,7 +13,7 @@ import java.math.BigInteger;
 public class RuleEntity implements Serializable
 {
     @Id
-    @SequenceGenerator(name = "rule_id_seq_gen", sequenceName = "rule_id_seq")
+    @SequenceGenerator(name = "rule_id_seq_gen", sequenceName = "rule_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rule_id_seq_gen")
     @Column(name = "ID_RULES")
     private long id;

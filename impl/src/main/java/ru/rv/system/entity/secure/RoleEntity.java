@@ -3,13 +3,14 @@ package ru.rv.system.entity.secure;
 import javax.annotation.Nonnull;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "ROLES")
 public class RoleEntity implements Serializable
 {
     @Id
-    @SequenceGenerator(name = "role_id_seq_gen", sequenceName = "role_id_seq")
+    @SequenceGenerator(name = "role_id_seq_gen", sequenceName = "role_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_id_seq_gen")
     @Column(name = "ID_ROLE")
     private long id;
