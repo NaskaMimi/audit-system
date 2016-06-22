@@ -20,7 +20,7 @@ public class UserEntity implements Serializable
     @Column(name = "PASSWORD_USER", nullable = false)
     private String password;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "ID_GROUP")
     private GroupEntity group;
 
