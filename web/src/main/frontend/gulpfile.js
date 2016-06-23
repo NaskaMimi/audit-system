@@ -10,6 +10,10 @@ const strip = require('gulp-strip-comments');
 const cssmin = require('gulp-cssmin');
 const css2js = require("gulp-css2js");
 const cssBase64 = require('gulp-css-base64');
+// clean the contents of the distribution directory
+gulp.task('clean', function () {
+    return del('dist/**/*');
+});
 
 gulp.task('tslint', function() {
     return gulp.src('app/**/*.ts')
