@@ -47,6 +47,10 @@ gulp.task('copy:libs', function() {
     gulp.src('node_modules/@angular/**/*').pipe(gulp.dest('dist/lib/@angular/'));
     gulp.src('node_modules/angular2-in-memory-web-api/**/*').pipe(gulp.dest('dist/lib/angular2-in-memory-web-api/'));
     gulp.src('node_modules/rxjs/**/*').pipe(gulp.dest('dist/lib/rxjs/'));
+    gulp.src([
+        'node_modules/bootstrap/dist/**/*.min.css',
+        'node_modules/bootstrap/dist/**/*.min.js'
+    ]).pipe(gulp.dest('dist/lib/bootstrap'));
     return gulp.src([
             'node_modules/core-js/client/shim.min.js',
             'node_modules/zone.js/dist/zone.js',
