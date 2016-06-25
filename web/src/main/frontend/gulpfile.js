@@ -10,13 +10,16 @@ const strip = require('gulp-strip-comments');
 const cssmin = require('gulp-cssmin');
 const css2js = require("gulp-css2js");
 const cssBase64 = require('gulp-css-base64');
-// clean the contents of the distribution directory
+
+const sourcePath = "/bundles/*";
+
+
 gulp.task('clean', function () {
-    return del('dist/**/*');
+    return del('../webapp/lib/*');
 });
 
 gulp.task('tslint', function() {
-    return gulp.src('app/**/*.ts')
+    return gulp.src('../webapp/app/**/*.ts')
         .pipe(tslint())
         .pipe(tslint.report('verbose'));
 });
@@ -24,14 +27,14 @@ gulp.task('tslint', function() {
 // TypeScript compile
 gulp.task('compile', function () {
     return gulp
-        .src('app/**/*.ts')
+        .src('../webapp/app/**/*.ts')
         .pipe(inlineNg2Template({ base: '/',target:'es5' }))
         .pipe(typescript(tscConfig.compilerOptions))
         .pipe(gulp.dest('dist/app'));
 });
 
 gulp.task('strip-css',function(){
-    return gulp.src('css/**/*.css')
+    return gulp.src('../webapp/css/**/*.css')
         .pipe(concat('styles.css'))
         .pipe(cssBase64())
         .pipe(cssmin({keepSpecialComments:0}))
@@ -39,31 +42,30 @@ gulp.task('strip-css',function(){
             prefix: "var cssText = \"",
             suffix: "\";\n"
         }))
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('../webapp/css'));
 });
 
 // copy dependencies
 gulp.task('copy:libs', function() {
-    gulp.src('node_modules/@angular/**/*').pipe(gulp.dest('dist/lib/@angular/'));
-    gulp.src('node_modules/angular2-in-memory-web-api/**/*').pipe(gulp.dest('dist/lib/angular2-in-memory-web-api/'));
-    gulp.src('node_modules/rxjs/**/*').pipe(gulp.dest('dist/lib/rxjs/'));
+    gulp.src('node_modules/@angular/**' + sourcePath).pipe(gulp.dest('../webapp/lib/@angular/'));
+    gulp.src('node_modules/angular2-in-memory-web-api' + sourcePath).pipe(gulp.dest('../webapp/lib/angular2-in-memory-web-api/'));
+    gulp.src('node_modules/reflect-metadata/temp/Reflect.js').pipe(gulp.dest('../webapp/lib/reflect-metadata'));
+
     gulp.src([
         'node_modules/bootstrap/dist/**/*.min.css',
         'node_modules/bootstrap/dist/**/*.min.js'
-    ]).pipe(gulp.dest('dist/lib/bootstrap'));
+    ]).pipe(gulp.dest('../webapp/lib/bootstrap'));
+
     return gulp.src([
             'node_modules/core-js/client/shim.min.js',
             'node_modules/zone.js/dist/zone.js',
             'node_modules/systemjs/dist/system.src.js',
-            'lib/bootstrap.min.js',
             'node_modules/moment/moment.js',
-            'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.js',
-            'lib/jquery-2.2.3.min.js',
-            'lib/jstree.js'
+            'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.js'
         ])
-        .pipe(gulp.dest('dist/lib'))
+        .pipe(gulp.dest('../webapp/lib'))
 });
 
 gulp.task('build', function () {
-    runSequence('clean', 'copy:libs');
+    runSequence('tslint','compile','copy:libs')
 });

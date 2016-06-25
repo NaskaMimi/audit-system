@@ -1,14 +1,13 @@
 (function(global)
 {
-    var ngVer = '@2.0.0-rc.1';
-
     var map =
     {
         'app': 'app',
-        '@angular': 'https://npmcdn.com/@angular',
-        /*'rxjs': 'https://npmcdn.com/rxjs@5.0.0-beta.6',
+        '@angular': 'lib/@angular',
+        /*  dependency npmcdn from */
+        'rxjs': 'https://npmcdn.com/rxjs@5.0.0-beta.6',
         'ts': 'https://npmcdn.com/plugin-typescript@4.0.10/lib/plugin.js',
-        'typescript': 'https://npmcdn.com/typescript@1.8.10/lib/typescript.js'*/
+        'typescript': 'https://npmcdn.com/typescript@1.8.10/lib/typescript.js'
     };
 
     var packages = {
@@ -28,7 +27,7 @@
     ];
 
     ngPackageNames.forEach(function(pkgName) {
-        map['@angular/'+pkgName] = 'https://npmcdn.com/@angular/' + pkgName + ngVer;
+        map['@angular/'+pkgName] = 'lib/@angular/' + pkgName + '/bundles';
     });
 
     ngPackageNames.forEach(function(pkgName) {
