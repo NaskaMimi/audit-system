@@ -4,14 +4,18 @@
     <title>Angular 2</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="lib/audit.system.js"></script>
-    <script src="lib/shim.js"></script>
-    <script src="lib/zone.js"></script>
-    <script src="lib/Reflect.js"></script>
+    <link href="lib/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
+
     <script src="lib/system.src.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
-    <link href="lib/bootstrap.min.css" type="text/css" rel="stylesheet">
+
     <base href="/">
+    <script>
+        SystemJS.import("lib/shim.js");
+        SystemJS.import("lib/zone.js");
+        SystemJS.import("lib/Reflect.js");
+        SystemJS.import("client/audit.system.js");
+        SystemJS.import("lib/bootstrap/bootstrap.min.js");
+    </script>
 </head>
 
 <body>

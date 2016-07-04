@@ -39,7 +39,7 @@ gulp.task('bundle', function() {
 
     builder.loadConfig('./system.config.js')
         .then(function(){
-            var outputFile = '../webapp/js/audit.system.js';
+            var outputFile = '../webapp/client/audit.system.js';
             return builder.buildStatic('dist', outputFile, {
             });
         })
