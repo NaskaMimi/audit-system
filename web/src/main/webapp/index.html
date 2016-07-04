@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Architecture of Angular 2</title>
+    <title>Angular 2</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='lib/bootstrap/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='lib/bootstrap/js/bootstrap.min.js'>
-
-    <script src="lib/reflect-metadata/Reflect.js"></script>
+    <script src="lib/audit.system.js"></script>
+    <script src="lib/shim.js"></script>
     <script src="lib/zone.js"></script>
+    <script src="lib/Reflect.js"></script>
     <script src="lib/system.src.js"></script>
-
-
-    <script src="systemjs.config.js"></script>
-    <script>
-        System.import('app').catch(function(err){ console.error(err); });
-    </script>
+    <script src="lib/bootstrap.min.js"></script>
+    <link href="lib/bootstrap.min.css" type="text/css" rel="stylesheet">
     <base href="/">
 </head>
 
 <body>
-    <my-app>Loading...</my-app>
+    <audit-app>Loading...</audit-app>
 </body>
-
 </html>

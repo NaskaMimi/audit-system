@@ -1,71 +1,76 @@
-const gulp = require('gulp');
+var gulp = require('gulp');
 const del = require('del');
 const typescript = require('gulp-typescript');
-const tscConfig = require('./tsconfig.json');
 const concat = require('gulp-concat');
+const tscConfig = require('./tsconfig.json');
 const runSequence = require('run-sequence');
 const inlineNg2Template = require('gulp-inline-ng2-template');
-const tslint = require('gulp-tslint');
-const strip = require('gulp-strip-comments');
-const cssmin = require('gulp-cssmin');
-const css2js = require("gulp-css2js");
-const cssBase64 = require('gulp-css-base64');
-
-const sourcePath = "/bundles/*";
-
+const tslint = require("gulp-tslint");
 
 gulp.task('clean', function () {
-    return del('../webapp/lib/*');
-});
-
-gulp.task('tslint', function() {
-    return gulp.src('../webapp/app/**/*.ts')
-        .pipe(tslint())
-        .pipe(tslint.report('verbose'));
+    return del('dist/**/*');
 });
 
 // TypeScript compile
 gulp.task('compile', function () {
     return gulp
-        .src('../webapp/app/**/*.ts')
+        .src('app/**/*.ts')
         .pipe(inlineNg2Template({ base: '/',target:'es5' }))
         .pipe(typescript(tscConfig.compilerOptions))
-        .pipe(gulp.dest('dist/app'));
+        .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('strip-css',function(){
-    return gulp.src('../webapp/css/**/*.css')
-        .pipe(concat('styles.css'))
-        .pipe(cssBase64())
-        .pipe(cssmin({keepSpecialComments:0}))
-        .pipe(css2js({
-            prefix: "var cssText = \"",
-            suffix: "\";\n"
+gulp.task('build-template-cache', ['clean'], function() {
+
+    var ngHtml2Js = require("gulp-ng-html2js"),
+        concat = require("gulp-concat");
+
+    return gulp.src("./app/*.html")
+        .pipe(ngHtml2Js({
+            moduleName: "todoPartials",
+            prefix: "/partials/"
         }))
-        .pipe(gulp.dest('../webapp/css'));
+        .pipe(gulp.dest("./dist"));
 });
 
-// copy dependencies
-gulp.task('copy:libs', function() {
-    gulp.src('node_modules/@angular/**' + sourcePath).pipe(gulp.dest('../webapp/lib/@angular/'));
-    gulp.src('node_modules/angular2-in-memory-web-api' + sourcePath).pipe(gulp.dest('../webapp/lib/angular2-in-memory-web-api/'));
-    gulp.src('node_modules/reflect-metadata/temp/Reflect.js').pipe(gulp.dest('../webapp/lib/reflect-metadata'));
+gulp.task('bundle', function() {
+    var SystemBuilder = require('systemjs-builder');
+    var builder = new SystemBuilder();
 
+    builder.loadConfig('./system.config.js')
+        .then(function(){
+            var outputFile = '../webapp/js/audit.system.js';
+            return builder.buildStatic('dist', outputFile, {
+            });
+        })
+        .then(function(){
+            console.log('bundle built successfully!');
+        });
+});
+
+gulp.task('copy:libs', function() {
+    gulp.src('dist/audit.system.js')
+        .pipe(gulp.dest('../webapp/client/audit.system.js'));
     gulp.src([
-        'node_modules/bootstrap/dist/**/*.min.css',
-        'node_modules/bootstrap/dist/**/*.min.js'
-    ]).pipe(gulp.dest('../webapp/lib/bootstrap'));
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css.map'])
+        .pipe(gulp.dest("../webapp/lib/bootstrap"));
 
     return gulp.src([
-            'node_modules/core-js/client/shim.min.js',
+            'node_modules/core-js/client/shim.js',
             'node_modules/zone.js/dist/zone.js',
             'node_modules/systemjs/dist/system.src.js',
-            'node_modules/moment/moment.js',
-            'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.js'
-        ])
-        .pipe(gulp.dest('../webapp/lib'))
+            'node_modules/reflect-metadata/temp/Reflect.js',
+            'node_modules/reflect-metadata/temp/Reflect.js.map',
+            'node_modules/systemjs/dist/system.src.js'
+        ]).pipe(gulp.dest('../webapp/lib'))
+});
+
+gulp.task('watch', function() {
+    return gulp.watch(['./index.html','./partials/*.html', './styles/*.*css', './js/**/*.js'], ['build']);
 });
 
 gulp.task('build', function () {
-    runSequence('tslint','compile','copy:libs')
+    runSequence('clean', 'build-template-cache','compile', 'bundle','copy:libs');
 });
