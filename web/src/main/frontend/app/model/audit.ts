@@ -1,4 +1,4 @@
-export class Audit {
+export class AuditDto {
     id: number;
     name: string;
     description: string;

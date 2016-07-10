@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnull;
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class RuleDto
+public class RuleDto implements Serializable
 {
     private final long id;
     private final String name;
@@ -30,8 +31,4 @@ public class RuleDto
         return name;
     }
 
-    public static void main(String[] args)
-    {
-
-    }
 }

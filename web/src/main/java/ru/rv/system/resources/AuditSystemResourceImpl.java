@@ -1,5 +1,6 @@
 package ru.rv.system.resources;
 
+import ru.rv.system.dto.AuditDto;
 import ru.rv.system.dto.RuleDto;
 import ru.rv.system.facade.AuditSystemFacade;
 
@@ -30,5 +31,11 @@ public class AuditSystemResourceImpl implements AuditSystemResource
     public void addRule(@Nonnull final RuleDto ruleDto)
     {
         auditSystemFacade.addRule(ruleDto);
+    }
+
+    @Override
+    public List<AuditDto> loadAudits()
+    {
+        return auditSystemFacade.loadAudits();
     }
 }

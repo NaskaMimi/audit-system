@@ -1,6 +1,9 @@
 package ru.rv.system.facade;
 
+import com.google.common.collect.Lists;
 import ru.rv.system.converter.RuleConverter;
+import ru.rv.system.dto.AuditDto;
+import ru.rv.system.dto.FactoryDto;
 import ru.rv.system.dto.RuleDto;
 import ru.rv.system.service.RuleBean;
 
@@ -42,5 +45,12 @@ public class AuditSystemFacade
     public void addRule(@Nonnull final RuleDto ruleDto)
     {
         ruleBean.addRule(ruleConverter.convert(ruleDto));
+    }
+
+    public List<AuditDto> loadAudits()
+    {
+        return Lists.newArrayList(
+                FactoryDto.createAuditDto(1, "name1", "description1"),
+                FactoryDto.createAuditDto(2, "name2", "description2"));
     }
 }

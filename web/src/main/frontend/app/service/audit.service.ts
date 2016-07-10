@@ -1,14 +1,24 @@
 import { Injectable } from "@angular/core";
-import { Audit } from "../model/audit";
-
-export var AUDITS:Audit[] = [
-    {id: 1, name: "audit1", description: "1"},
-    {id: 2, name: "audit2", description: "2"}
-];
+import { AuditDto } from "../model/audit";
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuditService {
-    loadAudits() {
-        return AUDITS;
+    private auditsUrl = 'rest/audits';
+
+    constructor(private http: Http) { }
+
+    loadAudits():Promise<AuditDto[]> {
+        return this.http.get(this.auditsUrl)
+            .toPromise()
+            .then(response => response.json().data)
+            .catch(this.handleError);
+    }
+
+
+    private handleError(error: any) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
     }
 }

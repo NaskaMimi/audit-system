@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Audit } from "../model/audit";
+import { AuditDto } from "../model/audit";
 import { AuditService } from "../service/audit.service"
 
 @Component({
@@ -9,14 +9,15 @@ import { AuditService } from "../service/audit.service"
 })
 
 export class AuditsComponent implements OnInit {
-    audits:Audit[];
-    selectAudit:Audit;
+    audits:AuditDto[];
+    selectAudit:AuditDto;
 
     constructor(
         private auditService:AuditService) {
     }
 
     ngOnInit() {
-        this.audits = this.auditService.loadAudits();
+        this.auditService.loadAudits()
+            .then(audits => this.audits = audits);
     }
 }
