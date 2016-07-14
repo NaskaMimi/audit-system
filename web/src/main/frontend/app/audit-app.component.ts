@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { AuditService } from "./service/audit.service";
 
 @Component({
     selector: "audit-app",

@@ -10,6 +10,10 @@ const routes: RouterConfig = [
     {
         path: 'reports',
         component: ReportsComponent
+    },
+    {
+        path: '',
+        component: ReportsComponent
     }
 ];
 

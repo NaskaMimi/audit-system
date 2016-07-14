@@ -163,7 +163,7 @@
 
     <profiles>
         <profile>
-            <id>Front End Build</id>
+            <id>Frontend Build</id>
             <build>
                 <pluginManagement>
                     <plugins>

@@ -1,6 +1,7 @@
 package ru.rv.system.resources;
 
 import ru.rv.system.dto.AuditDto;
+import ru.rv.system.dto.ReportDto;
 import ru.rv.system.dto.RuleDto;
 
 import javax.annotation.Nonnull;
@@ -34,4 +35,9 @@ public interface AuditSystemResource
     @GET
     @Produces(APPLICATION_JSON)
     List<AuditDto> loadAudits();
+
+    @Path(REPORT_PATH)
+    @GET
+    @Produces(APPLICATION_JSON)
+    List<ReportDto> loadReports();
 }

@@ -1,6 +1,7 @@
 package ru.rv.system.resources;
 
 import ru.rv.system.dto.AuditDto;
+import ru.rv.system.dto.ReportDto;
 import ru.rv.system.dto.RuleDto;
 import ru.rv.system.facade.AuditSystemFacade;
 
@@ -37,5 +38,11 @@ public class AuditSystemResourceImpl implements AuditSystemResource
     public List<AuditDto> loadAudits()
     {
         return auditSystemFacade.loadAudits();
+    }
+
+    @Override
+    public List<ReportDto> loadReports()
+    {
+        return auditSystemFacade.loadReport();
     }
 }
