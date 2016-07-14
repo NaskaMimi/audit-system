@@ -18,13 +18,4 @@ public class RuleConverter
                 ruleEntity.getId(),
                 ruleEntity.getName());
     }
-
-    @Nonnull
-    @Override
-    public RuleEntity convert(@Nonnull RuleDto input)
-    {
-        RuleEntity ruleEntity = new RuleEntity();
-        ruleEntity.setName(input.getName());
-        return ruleEntity;
-    }
 }

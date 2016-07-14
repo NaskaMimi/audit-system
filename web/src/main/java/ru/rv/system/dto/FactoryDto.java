@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -16,7 +17,7 @@ public final class FactoryDto
     }
     public static AuditDto createAuditDto(@Nonnegative final long id,
                                           @Nonnull final String name,
-                                          @Nonnull final String description)
+                                          @Nullable final String description)
     {
         return new AuditDto(id, name, description);
     }

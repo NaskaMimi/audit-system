@@ -15,13 +15,11 @@ public class RuleEntity implements Serializable
     @Id
     @SequenceGenerator(name = "rule_id_seq_gen", sequenceName = "rule_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rule_id_seq_gen")
-    @Column(name = "ID_RULES")
+    @Column(name = "ID_RULE")
     private long id;
 
-    @Column(name = "NAME_RULES")
+    @Column(name = "NAME_RULE", length = 50, nullable = false)
     private String name;
-
-    public RuleEntity() {}
 
     public long getId()
     {

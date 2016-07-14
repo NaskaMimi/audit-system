@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.Serializable;
 
 public class AuditDto implements Serializable
@@ -16,7 +17,7 @@ public class AuditDto implements Serializable
     @JsonCreator
     protected AuditDto(@Nonnegative @JsonProperty("id") final long id,
                        @Nonnull @JsonProperty("name") final String name,
-                       @Nonnull @JsonProperty("description") String description)
+                       @Nullable @JsonProperty("description") String description)
     {
         this.id = id;
         this.name = name;
@@ -35,7 +36,7 @@ public class AuditDto implements Serializable
         return name;
     }
 
-    @Nonnull
+    @Nullable
     public String getDescription()
     {
         return description;
