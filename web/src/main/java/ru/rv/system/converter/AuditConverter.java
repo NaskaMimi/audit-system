@@ -9,7 +9,6 @@ import javax.annotation.Nonnull;
 public class AuditConverter
         implements Converter<AuditEntity, AuditDto>
 {
-
     @Nonnull
     @Override
     public AuditDto convert(@Nonnull final AuditEntity auditEntity)

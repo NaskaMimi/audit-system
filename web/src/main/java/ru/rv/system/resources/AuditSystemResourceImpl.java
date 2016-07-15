@@ -7,6 +7,7 @@ import ru.rv.system.facade.AuditSystemFacade;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.List;
 
 public class AuditSystemResourceImpl implements AuditSystemResource

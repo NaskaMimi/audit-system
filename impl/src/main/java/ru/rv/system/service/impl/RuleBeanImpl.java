@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
+import java.util.Collection;
 
 @Stateless
 public class RuleBeanImpl implements RuleBean
@@ -17,12 +17,11 @@ public class RuleBeanImpl implements RuleBean
 
     @Nonnull
     @Override
-    public List<RuleEntity> loadRules()
+    public Collection<RuleEntity> loadRules()
     {
         return entityManager
                 .createNamedQuery("RULES.loadAll", RuleEntity.class)
                 .getResultList();
-
     }
 
     @Override

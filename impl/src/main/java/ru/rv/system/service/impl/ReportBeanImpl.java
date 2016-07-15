@@ -1,26 +1,22 @@
 package ru.rv.system.service.impl;
 
-import ru.rv.system.entity.AuditEntity;
-import ru.rv.system.service.AuditBean;
+import ru.rv.system.entity.ReportEntity;
+import ru.rv.system.service.ReportBean;
 
-import javax.annotation.Nonnull;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collection;
 
-@Stateless
-public class AuditBeanImpl implements AuditBean
+public class ReportBeanImpl implements ReportBean
 {
     @PersistenceContext(unitName = "PostgrePersistence")
     private EntityManager entityManager;
 
-    @Nonnull
     @Override
-    public Collection<AuditEntity> loadAudits()
+    public Collection<ReportEntity> loadReports()
     {
         return entityManager
-                .createNamedQuery("AUDITS.loadAll", AuditEntity.class)
+                .createNamedQuery("REPORTS.loadAll", ReportEntity.class)
                 .getResultList();
     }
 }

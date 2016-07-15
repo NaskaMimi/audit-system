@@ -8,6 +8,9 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "REPORTS")
+@NamedQueries(
+        @NamedQuery(name = "REPORTS.loadAll", query = "select o from ReportEntity o")
+)
 public class ReportEntity implements Serializable
 {
     @Id
@@ -19,12 +22,12 @@ public class ReportEntity implements Serializable
     @Column(name = "NAME_REPORT", length = 50, nullable = false)
     private String nameReport;
 
+    @Column(name = "DATE")
+    private Date date;
+
     @OneToOne(optional = false)
     @JoinColumn(name = "ID_AUDIT")
     private AuditEntity auditEntity;
-
-    @Column(name = "DATE")
-    private Date date;
 
     @Nonnegative
     public long getId()
@@ -44,17 +47,6 @@ public class ReportEntity implements Serializable
     }
 
     @Nonnull
-    public AuditEntity getAuditEntity()
-    {
-        return auditEntity;
-    }
-
-    public void setAuditEntity(@Nonnull final AuditEntity auditEntity)
-    {
-        this.auditEntity = auditEntity;
-    }
-
-    @Nonnull
     public Date getDate()
     {
         return date;
@@ -63,5 +55,16 @@ public class ReportEntity implements Serializable
     public void setDate(@Nonnull final Date date)
     {
         this.date = date;
+    }
+
+    @Nonnull
+    public AuditEntity getAuditEntity()
+    {
+        return auditEntity;
+    }
+
+    public void setAuditEntity(@Nonnull final AuditEntity auditEntity)
+    {
+        this.auditEntity = auditEntity;
     }
 }

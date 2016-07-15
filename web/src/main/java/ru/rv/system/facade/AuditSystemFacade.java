@@ -1,20 +1,19 @@
 package ru.rv.system.facade;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 import ru.rv.system.converter.AuditConverter;
+import ru.rv.system.converter.ReportConverter;
 import ru.rv.system.converter.RuleConverter;
 import ru.rv.system.dto.AuditDto;
 import ru.rv.system.dto.FactoryDto;
 import ru.rv.system.dto.ReportDto;
 import ru.rv.system.dto.RuleDto;
 import ru.rv.system.service.AuditBean;
+import ru.rv.system.service.ReportBean;
 import ru.rv.system.service.RuleBean;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,25 +22,32 @@ public class AuditSystemFacade
 {
     @Inject
     RuleBean ruleBean;
-
     @Inject
     AuditBean auditBean;
+    @Inject
+    ReportBean reportBean;
 
     @Inject
     RuleConverter ruleConverter;
     @Inject
     AuditConverter auditConverter;
+    @Inject
+    ReportConverter reportConverter;
 
     @Inject
     public AuditSystemFacade(@Nonnull final RuleBean ruleBean,
                              @Nonnull final AuditBean auditBean,
+                             @Nonnull final ReportBean reportBean,
                              @Nonnull final RuleConverter ruleConverter,
-                             @Nonnull final AuditConverter auditConverter)
+                             @Nonnull final AuditConverter auditConverter,
+                             @Nonnull final ReportConverter reportConverter)
     {
         this.ruleBean = ruleBean;
         this.auditBean = auditBean;
+        this.reportBean = reportBean;
         this.ruleConverter = ruleConverter;
         this.auditConverter = auditConverter;
+        this.reportConverter = reportConverter;
     }
 
     @Nonnull
@@ -62,7 +68,6 @@ public class AuditSystemFacade
     public void addRule(@Nonnull final RuleDto ruleDto)
     {
         // TODO: addRule
-        // ruleBean.addRule(ruleConverter.convert(ruleDto));
     }
 
     public List<AuditDto> loadAudits()
@@ -75,12 +80,9 @@ public class AuditSystemFacade
 
     public List<ReportDto> loadReport()
     {
-        //TODO: stub
-        return ImmutableList.of(
-                FactoryDto.createReportDto(1, "audit1", "report1", new Date()),
-                FactoryDto.createReportDto(2, "audit2", "report2", new Date()),
-                FactoryDto.createReportDto(3, "audit3", "report3", new Date()),
-                FactoryDto.createReportDto(4, "audit4", "report4", new Date())
-        );
+        return reportBean.loadReports()
+                .stream()
+                .map(reportConverter::convert)
+                .collect(Collectors.toList());
     }
 }

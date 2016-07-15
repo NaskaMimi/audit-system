@@ -6,6 +6,7 @@ import ru.rv.system.dto.RuleDto;
 
 import javax.annotation.Nonnull;
 import javax.ws.rs.*;
+import java.util.Collection;
 import java.util.List;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;

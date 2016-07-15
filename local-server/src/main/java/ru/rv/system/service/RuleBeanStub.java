@@ -6,7 +6,7 @@ import ru.rv.system.entity.RuleEntity;
 import javax.annotation.Nonnull;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Alternative;
-import java.util.List;
+import java.util.Collection;
 
 @Alternative
 @Stateless
@@ -14,7 +14,7 @@ public class RuleBeanStub implements RuleBean
 {
     @Nonnull
     @Override
-    public List<RuleEntity> loadRules()
+    public Collection<RuleEntity> loadRules()
     {
         return Lists.newArrayList();
     }
