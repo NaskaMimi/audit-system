@@ -8,6 +8,7 @@ public final class Constants
     public static final String RULE_PATH = "/rule";
     public static final String AUTHORIZATION_USER_PATH = "/secure";
     public static final String AUDITS_PATH = "/audits";
+    public static final String AUDIT_PATH = "/audit";
     public static final String REPORT_PATH = "/reports";
 
     private Constants() {}

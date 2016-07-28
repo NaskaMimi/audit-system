@@ -13,6 +13,7 @@ import ru.rv.system.service.RuleBean;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,5 +85,10 @@ public class AuditSystemFacade
                 .stream()
                 .map(reportConverter::convert)
                 .collect(Collectors.toList());
+    }
+
+    public AuditDto addAudit(AuditDto auditDto)
+    {
+        return FactoryDto.createAuditDto(BigInteger.TEN, "test add", "test add d");
     }
 }

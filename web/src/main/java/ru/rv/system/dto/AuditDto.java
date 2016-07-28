@@ -7,15 +7,16 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 public class AuditDto implements Serializable
 {
-    private long id;
+    private BigInteger id;
     private String name;
     private String description;
 
     @JsonCreator
-    protected AuditDto(@Nonnegative @JsonProperty("id") final long id,
+    protected AuditDto(@Nonnegative @JsonProperty("id") final BigInteger id,
                        @Nonnull @JsonProperty("name") final String name,
                        @Nullable @JsonProperty("description") String description)
     {
@@ -25,7 +26,7 @@ public class AuditDto implements Serializable
     }
 
     @Nonnegative
-    public long getId()
+    public BigInteger getId()
     {
         return id;
     }

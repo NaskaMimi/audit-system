@@ -42,6 +42,12 @@ public class AuditSystemResourceImpl implements AuditSystemResource
     }
 
     @Override
+    public AuditDto createAudit(AuditDto auditDto)
+    {
+        return auditSystemFacade.addAudit(auditDto);
+    }
+
+    @Override
     public List<ReportDto> loadReports()
     {
         return auditSystemFacade.loadReport();

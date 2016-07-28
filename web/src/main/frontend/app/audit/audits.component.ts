@@ -10,7 +10,7 @@ import { AuditService } from "../service/audit.service"
 
 export class AuditsComponent implements OnInit {
     audits:AuditDto[];
-    selectAudit:AuditDto;
+    newAudit:AuditDto;
 
     constructor(
         private auditService:AuditService) {
@@ -19,5 +19,12 @@ export class AuditsComponent implements OnInit {
     ngOnInit() {
         this.auditService.loadAudits()
             .then(audits => this.audits = audits);
+        this.newAudit = {id:0, name:"", description:""};
     }
+
+    /*saveAudit()
+    {
+        this.auditService.addAudit(this.newAudit)
+            .then(audit => this.audits.concat(audit));
+    }*/
 }

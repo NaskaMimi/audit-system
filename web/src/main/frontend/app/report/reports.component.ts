@@ -10,12 +10,11 @@ import { ReportService } from "../service/report.service";
 
 export class ReportsComponent implements OnInit {
     reports:ReportDto[];
-    reportDto:ReportDto;
 
     constructor(private reportService:ReportService) {}
 
-    ngOnInit()
-    {
-        this.reportService.loadReports().then(reports => this.reports = reports);
+    ngOnInit() {
+        this.reportService.loadReports()
+            .then(reports => this.reports = reports);
     }
 }

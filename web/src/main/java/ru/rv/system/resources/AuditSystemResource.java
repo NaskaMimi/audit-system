@@ -37,6 +37,11 @@ public interface AuditSystemResource
     @Produces(APPLICATION_JSON)
     List<AuditDto> loadAudits();
 
+    @Path(AUDIT_PATH)
+    @POST
+    @Produces(APPLICATION_JSON)
+    AuditDto createAudit(AuditDto auditDto);
+
     @Path(REPORT_PATH)
     @GET
     @Produces(APPLICATION_JSON)

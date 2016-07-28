@@ -56,7 +56,8 @@ gulp.task('copy:libs', function() {
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/bootstrap/dist/css/bootstrap.min.css.map'])
         .pipe(gulp.dest("../webapp/lib/bootstrap"));
-
+    gulp.src("node_modules/jquery/dist/jquery.min.js")
+        .pipe(gulp.dest("../webapp/lib/jquery"));
     return gulp.src([
             'node_modules/core-js/client/shim.js',
             'node_modules/zone.js/dist/zone.js',

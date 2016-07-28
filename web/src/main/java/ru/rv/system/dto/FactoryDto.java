@@ -15,7 +15,7 @@ public final class FactoryDto
     {
         return new RuleDto(id, name);
     }
-    public static AuditDto createAuditDto(@Nonnegative final long id,
+    public static AuditDto createAuditDto(@Nonnegative final BigInteger id,
                                           @Nonnull final String name,
                                           @Nullable final String description)
     {

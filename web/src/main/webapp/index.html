@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Angular 2</title>
+    <title>Audit System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="lib/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/dashbord.css" type="text/css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="lib/system.src.js"></script>
 
     <base href="/">
@@ -14,8 +13,9 @@
         SystemJS.import("lib/shim.js");
         SystemJS.import("lib/zone.js");
         SystemJS.import("lib/Reflect.js");
-        SystemJS.import("client/audit.system.js");
+        SystemJS.import("lib/jquery/jquery.min.js");
         SystemJS.import("lib/bootstrap/bootstrap.min.js");
+        SystemJS.import("client/audit.system.js");
     </script>
 </head>
 

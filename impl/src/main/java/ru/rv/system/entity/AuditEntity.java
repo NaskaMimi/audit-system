@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "AUDITS")
@@ -17,7 +18,7 @@ public class AuditEntity implements Serializable
     @SequenceGenerator(name = "audit_id_seq_gen", sequenceName = "audit_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "audit_id_seq_gen")
     @Column(name = "ID_AUDIT")
-    private long id;
+    private BigInteger id;
 
     @Column(name = "NAME_AUDIT", length = 50, nullable = false)
     private String name;
@@ -26,9 +27,14 @@ public class AuditEntity implements Serializable
     private String description;
 
     @Nonnegative
-    public long getId()
+    public BigInteger getId()
     {
         return id;
+    }
+
+    public void setId(@Nonnegative final BigInteger id)
+    {
+        this.id = id;
     }
 
     @Nonnull
